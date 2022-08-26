@@ -500,9 +500,10 @@ def answer_question(quiz_type, cookies, scores, score_all, quiz_xpath, category_
             if scores[quiz_type] >= score_all:
                 print("检测到"+quiz_zh_CN[quiz_type]+"答题分数已满,退出学 xi ")
             else:
-                print(
-                    "！！！！！没拿到满分，请收集日志反馈错误题目！！！！！https://github.com/TechXueXi/techxuexi-tiku/issues/1")
-                auto.prompt("完成后（或懒得弄）请在此按回车...")
+                if quiz_type != "weekly":
+                    print(
+                        "！！！！！没拿到满分，请收集日志反馈错误题目！！！！！https://github.com/TechXueXi/techxuexi-tiku/issues/1")
+                    auto.prompt("完成后（或懒得弄）请在此按回车...")
                 # log_daily("！！！！！没拿到满分！！！！！")
         if driver_default == None:
             try:
@@ -527,7 +528,7 @@ def daily(cookies, scores, driver_default=None):
 def weekly(cookies, scores, driver_default=None):
     quiz_type = "weekly"
     score_all = const.weekly_all
-    quiz_xpath = '//*[@id="app"]/div/div[2]/div/div[3]/div[2]/div[6]/div[2]/div[2]/div'
+    quiz_xpath = '//*[@id="app"]/div/div[2]/div/div[3]/div[2]/div[7]/div[2]/div[2]/div'
     category_xpath = '//*[@id="app"]/div/div[2]/div/div[4]/div[1]/div[1]'
     answer_question(quiz_type, cookies, scores, score_all,
                     quiz_xpath, category_xpath, driver_default=driver_default)
@@ -536,7 +537,7 @@ def weekly(cookies, scores, driver_default=None):
 def zhuanxiang(cookies, scores, driver_default=None):
     quiz_type = "zhuanxiang"
     score_all = const.zhuanxiang_all
-    quiz_xpath = '//*[@id="app"]/div/div[2]/div/div[3]/div[2]/div[7]/div[2]/div[2]/div'
+    quiz_xpath = '//*[@id="app"]/div/div[2]/div/div[3]/div[2]/div[6]/div[2]/div[2]/div'
     category_xpath = '//*[@id="app"]/div/div[2]/div/div[6]/div[1]/div[1]'
     answer_question(quiz_type, cookies, scores, score_all,
                     quiz_xpath, category_xpath, driver_default=driver_default)
